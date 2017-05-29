@@ -15,7 +15,7 @@ export default class Child extends Component {
   static propTypes = {
     match: PropTypes.object,
     path: PropTypes.string,
-    children: PropTypes.node.isRequired,
+    children: PropTypes.any.isRequired,
     location: PropTypes.object.isRequired,
     className: PropTypes.string,
     async: PropTypes.bool

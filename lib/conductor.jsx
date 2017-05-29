@@ -37,11 +37,11 @@ export default class Conductor extends Component {
   }
 
   componentWillMount() {
-    this.props.onLocationWillChange(this.props.children, this.props.location.pathname, this.props.history)
+    this.props.onLocationWillChange(void 0, this.props)
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.location === this.props.location || !this.props.onLocationWillChange(this.props.children, this.props.location.pathname, this.props.history)) {
+    if (nextProps.location === this.props.location || !this.props.onLocationWillChange(nextProps, this.props)) {
       return
     }
 

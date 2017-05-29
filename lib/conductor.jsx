@@ -52,7 +52,7 @@ export default class Conductor extends Component {
     this._prevLocation = this.props.location
     this.transition$ = new Subject()
 
-    this.$transition::switchMap($sequence => $sequence)
+    this.transition$::switchMap($sequence => $sequence)
       .subscribe(() => {
         delete this._routeObservables[this._leavingRoute]
         this._leavingRoute = this._enteringRoute = null
@@ -104,7 +104,7 @@ export default class Conductor extends Component {
 
       switch (transitionMode) {
         case 'in-out':
-          this.$transition.next(
+          this.transition$.next(
             $enteringComponent()
               ::mergeMap(({componentEnter}) => componentEnter(this._prevLocation))
               ::mergeMap(() => $leavingComponent())
@@ -115,7 +115,7 @@ export default class Conductor extends Component {
           )
           break
         case 'out-in':
-          this.$transition.next(
+          this.transition$.next(
             $leavingComponent()
               ::mergeMap(leavingComponent =>
                 leavingComponent.componentLeave(this.props.location)
@@ -132,7 +132,7 @@ export default class Conductor extends Component {
           )
           break
         case 'simultaneous':
-          this.$transition.next(
+          this.transition$.next(
             Observable::zip($enteringComponent, $leavingComponent)
               ::mergeMap(([enteringComponent, leavingComponent]) =>
                 Observable::zip(

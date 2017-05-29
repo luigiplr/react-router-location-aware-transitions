@@ -34,9 +34,9 @@ export default class App extends React.Component {
 function TransitionRoute({ component, path, ...props }) {
     return (
         <Route path={path} {...props} children={childProps =>
-          <LocationAwareTransitions.Child {...childProps} path={path} className={styles.transitionChild}>
-            {component}
-          </LocationAwareTransitions.Child>
+            <LocationAwareTransitions.Child {...childProps} path={path} className={styles.transitionChild}>
+                {component}
+            </LocationAwareTransitions.Child>
         } />
     )
 }
